@@ -6,12 +6,14 @@
   --background-rgb: hex-to-rgb(#f2efeb);
 }
 
+html, body {
+  height: 100%
+}
+
 body {
   background-color: var(--background-rgb);
-  /*background: rgb(var(--background-start-rgb));*/
   background-image: url(../public/mushroom.svg), url(../public/pepper.svg),
     url(../public/strawberry.svg);
 
   background-size: 240px 240px;
-  background-repeat: repeat repeat repeat;
 }

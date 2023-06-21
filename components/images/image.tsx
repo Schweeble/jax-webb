@@ -8,6 +8,27 @@ type ImageProps = {
   paginate: (n: number) => void;
 };
 
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+};
+
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
@@ -20,23 +41,24 @@ export const Image = (props: ImageProps) => {
     setIsLoading(false);
   };
 
+  const direction = props.direction;
+
   return (
     <motion.img
-      className="absolute max-w-fit rounded-3xl"
+      className="rounded-3xl flex justify-center items-center"
       width={500}
       height={500}
       key={props.page}
       src={props.src}
-      initial={{ height: '16rem', opacity: 0 }}
-      animate={{
-        height: isLoading ? '16rem' : 'auto',
-        opacity: isLoading ? 0 : 1,
+      custom={direction}
+      variants={variants}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      transition={{
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
       }}
-      exit={{ height: 'auto', opacity: 0 }}
-      transition={[
-        { height: { delay: 0, duration: 0.4 } },
-        { opacity: { delay: 0.5, duration: 0.4 } },
-      ]}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={1}
