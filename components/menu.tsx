@@ -2,6 +2,7 @@
 
 import { AnimatePresence, Variants, motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { GiSuperMushroom, GiChiliPepper, GiStrawberry } from 'react-icons/gi';
 
@@ -10,7 +11,7 @@ import { MdOutlineMenuOpen, MdOutlineMenu } from 'react-icons/md';
 const MenuItemVariants: Variants = {
   hide: {
     opacity: 0,
-    x: 10,
+    x: 200,
   },
   show: {
     opacity: 1,
@@ -18,7 +19,7 @@ const MenuItemVariants: Variants = {
   },
   exit: {
     opacity: 0,
-    x: -10,
+    x: -200,
   },
 };
 
@@ -48,7 +49,7 @@ export const Menu = () => {
 
   return (
     <motion.nav
-      className="flex flex-row justify-between gap-4 py-10 px-5 text-4xl text-white bg-red"
+      className="flex flex-row justify-between gap-4 py-10 px-5 text-4xl text-white bg-red max-h-1/10" 
       layout
     >
       <AnimatePresence mode="popLayout">
@@ -56,19 +57,29 @@ export const Menu = () => {
           key="menu"
           className="flex h-full w-full flex-row items-center justify-end bg-red"
           variants={MenuItemVariants}
-          initial="show"
-          animate="show"
+          initial="enter"
+          animate="enter"
           exit="exit"
+          transition={{
+            x: { type: 'spring', stiffness: 1, damping: 30 },
+            opacity: { duration: 0.3 },
+          }}
         >
+          {/* <Image
+            src='branding-JAX.svg'
+            width={100}
+            height={100}
+            alt="Jax Designs"
+          /> */}
           {open ? (
             <MenuOpen setOpen={setOpen} />
           ) : (
-            <button
+            <motion.button
               className="flex h-full justify-end bg-red text-xl"
               onClick={() => setOpen(true)}
             >
               <MdOutlineMenu />
-            </button>
+            </motion.button>
           )}
         </motion.div>
       </AnimatePresence>
@@ -132,7 +143,7 @@ export const AnimatedIconLink = ({
       <AnimatePresence>
         {index === currentIndex && (
           <motion.div
-            className="absolute mx-auto h-full w-full rounded bg-pink-500"
+            className="absolute mx-auto h-full w-full rounded bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops)) from-transparent to-white"
             layoutId="social"
             key="social"
             variants={iconBackgroundVariants}
