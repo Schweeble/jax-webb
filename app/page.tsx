@@ -7,24 +7,24 @@ const Home = () => {
   return (
     // grid
     <Grid
-      minHeight={"89vh"}
-      direction={'row'}
+      data-text='home-outer-grid'
+      height='90%'
+      display='flex'
+      flexDirection='row'
+      margin-top='3rem'
       container
-      xs={12}
     >
-      <Grid container item xs={6}>
+      <Grid container item xs={4}>
         <Paper
-          className='bg-white rounded-3xl p-12'
           elevation={24}
           sx={{
             width: '100%',
-            height: '100%',
-            padding: '3rem',
+            margin: '3rem',
           }}>
           <SlideShow />
         </Paper>
       </Grid>
-      <Grid container item xs={6}></Grid>
+      <Grid container item xs={8}></Grid>
     </Grid>
   );
 };

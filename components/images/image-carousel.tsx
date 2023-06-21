@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { wrap } from 'popmotion';
 import { useState } from 'react';
 import useSWR from 'swr';
-import { ImageButton } from '../buttons';
+import { CarouselButton } from '../buttons';
 import { Image } from './image';
-import { Grid } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 
 type ImageData = string[];
 
@@ -28,16 +28,35 @@ export const SlideShow = () => {
       {!data && <div>Loading...</div>}
       {data && (
         <Grid
-          className="flex justify-center items-center"
+          display="flex"
+          flexDirection="row"
+          justifyContent="center"
+          alignItems="center"
           container
-          width={'100%'}
           height={'100%'}
+          width={'100%'}
         >
-          <Grid item xs={2} width='100%' height='100%'>
-            <ImageButton position="right" onClick={() => paginate(-1)} />
+          <Grid
+            item
+            xs={3}
+            width="100%"
+            alignItems="start"
+            display="flex"
+            justifyContent="center"
+          >
+            <CarouselButton position="left" onClick={() => paginate(1)} />
           </Grid>
-          <Grid item xs={6} direction={'row'} width='100%' height='100%'>
-            <AnimatePresence initial={false} custom={{ direction, isLoading }}>
+          <Grid
+            item
+            xs={6}
+            width="100%"
+            height="100%"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            overflow="hidden"
+          >
+            <AnimatePresence initial={false} custom={direction}>
               <Image
                 src={data[imageIndex]}
                 page={page}
@@ -46,8 +65,15 @@ export const SlideShow = () => {
               />
             </AnimatePresence>
           </Grid>
-          <Grid item xs={2} width='100%' height='100%'>
-            <ImageButton position="left" onClick={() => paginate(1)} />
+          <Grid
+            item
+            xs={3}
+            width="100%"
+            justifyContent="center"
+            alignItems="end"
+            display="flex"
+          >
+            <CarouselButton position="right" onClick={() => paginate(-1)} />
           </Grid>
         </Grid>
       )}

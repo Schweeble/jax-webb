@@ -49,13 +49,13 @@ export const Menu = () => {
 
   return (
     <motion.nav
-      className="flex flex-row justify-between gap-4 py-10 px-5 text-4xl text-white bg-red max-h-1/10" 
+      className="flex flex-row justify-between gap-4 py-10 px-5 text-4xl text-white bg-red fixed top-0 w-full" 
       layout
     >
       <AnimatePresence mode="popLayout">
         <motion.div
           key="menu"
-          className="flex h-full w-full flex-row items-center justify-end bg-red"
+          className="flex h-full w-full flex-row items-center justify-end bg-red m-0"
           variants={MenuItemVariants}
           initial="enter"
           animate="enter"

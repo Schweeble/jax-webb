@@ -1,25 +1,21 @@
-import { on } from 'events';
-import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
+import { IconButton } from '@mui/material';
+import { MouseEventHandler } from 'react';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-type ButtonProps = {
+type CarouselButtonProps = {
   position: 'left' | 'right';
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const ImageButton = ({ position, onClick }: ButtonProps) => {
-  let className = 'absolute bg-white rounded-3xl top-[calc(50%-20px)] w-9 h-9 flex justify-center items-center select-none cursor-pointer weight-bold text-2xl z-10 ';
-  if (position === 'left') { 
-    className += 'left-3 -scale-100';
-  } else {
-    className += 'right-3';
-  }
-
+export const CarouselButton = ({ position, onClick }: CarouselButtonProps) => {
   return (
-    <div
-      className={className}
+    <IconButton
+      aria-label={'carosel' + position}
+      size="small"
       onClick={onClick}
     >
-      {'‣'}
-    </div>
+      {position === 'left' && <AiOutlineArrowLeft />}
+      {position === 'right' && <AiOutlineArrowRight />}
+    </IconButton>
   );
 };
