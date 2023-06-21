@@ -14,7 +14,7 @@ const Home = () => {
       margin-top='3rem'
       container
     >
-      <Grid container item xs={4}>
+      <Grid container item xs={4} minWidth='20%'>
         <Paper
           elevation={24}
           sx={{

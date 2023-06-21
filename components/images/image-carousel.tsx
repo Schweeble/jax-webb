@@ -38,7 +38,7 @@ export const SlideShow = () => {
         >
           <Grid
             item
-            xs={3}
+            xs={1}
             width="100%"
             alignItems="start"
             display="flex"
@@ -48,7 +48,7 @@ export const SlideShow = () => {
           </Grid>
           <Grid
             item
-            xs={6}
+            xs={10}
             width="100%"
             height="100%"
             display="flex"
@@ -67,7 +67,7 @@ export const SlideShow = () => {
           </Grid>
           <Grid
             item
-            xs={3}
+            xs={1}
             width="100%"
             justifyContent="center"
             alignItems="end"
