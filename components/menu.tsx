@@ -49,7 +49,7 @@ export const Menu = () => {
 
   return (
     <motion.nav
-      className="flex flex-row justify-between gap-4 py-10 px-5 text-4xl text-white bg-red fixed top-0 w-full" 
+      className="flex flex-row justify-between gap-4 py-2 md:py-10 px-2 md:px-5 text-4xl text-white bg-red fixed top-0 w-full" 
       layout
     >
       <AnimatePresence mode="popLayout">
