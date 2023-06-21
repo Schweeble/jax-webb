@@ -1,17 +1,32 @@
-import Image from 'next/image'
+'use client';
 
-export default function Home() {
+import { SlideShow } from '@/components/images/image-carousel';
+import { Grid, Paper } from '@mui/material';
+
+const Home = () => {
   return (
-    <div className='justify-center'>
-      <h1>Welcome to JaxDesigns</h1>
-      <Image
-        src="/images/Jaxx Jewelry-12.jpg"
-        height={480}
-        width={480}
-        alt="Jax Jewelry"
-      />
-      
-    </div>
-    
+    // grid
+    <Grid
+      minHeight={"89vh"}
+      direction={'row'}
+      container
+      xs={12}
+    >
+      <Grid container item xs={6}>
+        <Paper
+          className='bg-white rounded-3xl p-12'
+          elevation={24}
+          sx={{
+            width: '100%',
+            height: '100%',
+            padding: '3rem',
+          }}>
+          <SlideShow />
+        </Paper>
+      </Grid>
+      <Grid container item xs={6}></Grid>
+    </Grid>
   );
-}
+};
+
+export default Home;
